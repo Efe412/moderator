@@ -145,53 +145,7 @@ body {
     100% { width: 100%; }
 }
 
-/* Access Buttons */
-.admin-access-btn {
-    width: 40px;
-    height: 40px;
-    background: rgba(102, 126, 234, 0.1);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: all var(--transition-base);
-    border: 1px solid rgba(102, 126, 234, 0.2);
-}
 
-.admin-access-btn:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: var(--shadow-lg);
-}
-
-.logs-access-btn {
-    position: absolute;
-    top: -20px;
-    right: 20px;
-    width: 35px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: all var(--transition-base);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    font-size: 0.875rem;
-}
-
-.logs-access-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
 
 /* Navigation */
 .navbar {
@@ -341,10 +295,6 @@ body {
     z-index: 3;
     max-width: 900px;
     padding: 0 var(--space-6);
-}
-
-.hero-badge {
-    position: relative;
 }
 
 .hero-badge {
@@ -1506,18 +1456,7 @@ body {
         visibility: visible;
     }
     
-    .admin-access-btn {
-        width: 35px;
-        height: 35px;
-    }
     
-    .logs-access-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.75rem;
-        top: -15px;
-        right: 15px;
-    }
     
     .hero-buttons {
         flex-direction: column;
