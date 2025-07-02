@@ -24,10 +24,13 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="admin-dashboard.html" class="admin-access-btn" title="Yönetici Paneli">
+                <i class="fas fa-cog"></i>
+            </a>
+            <a href="#" class="nav-logo">
                 <i class="fas fa-shield-alt"></i>
                 <span>Moderatör Ekibi</span>
-            </div>
+            </a>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -51,22 +54,19 @@
             <div class="hero-badge">
                 <span class="badge-text">Resmi</span>
             </div>
+            <a href="logs.html" class="logs-access-btn" title="Logs Dashboard">
+                <i class="fas fa-chart-line"></i>
+            </a>
             <h1 class="hero-title">Moderatör Ekibi</h1>
             <p class="hero-description">Moderatör Ekibi Olarak Hizmetindeyiz</p>
             <div class="hero-buttons">
-                <a href="admin-dashboard.html" class="btn btn-primary">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Yönetici Paneli</span>
+                    <a href="basvuru.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-user-plus"></i> Moderatör Ol
                     </a>
-                    <a href="logs.html" class="btn btn-secondary" style="margin-left: 1rem;">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Logs Dashboard</span>
+                    <a href="sikayet.html" class="btn btn-secondary btn-large">
+                        <i class="fas fa-flag"></i> Şikayet Et
                     </a>
-                <button onclick="openIframe('basvuru.html')" class="btn btn-secondary">
-                    <span>Başvuru Yap</span>
-                    <i class="fas fa-user-plus"></i>
-                </button>
-            </div>
+                </div>
         </div>
         <div class="hero-background">
             <div class="hero-shape shape-1"></div>
