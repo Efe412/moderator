@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderatör Başvurusu - Moderatör Ekibi</title>
+    <link rel="icon" href="attached_assets/912bb02f39aeab1b98616b53d58e5152-photoaidcom-cropped_1751403653605.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Moderatör Ekibi</span>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="application-page">
+        <div class="container">
+            <div class="application-header">
+                <div class="header-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Moderatör Başvurusu</h1>
+                <p>Moderatör Ekibi'ne katılmak için aşağıdaki formu eksiksiz doldurun.</p>
+            </div>
+
+            <form class="application-form" id="applicationForm">
+                <!-- Bölüm 1: Kişisel Bilgiler -->
+                <div class="form-section" data-section="1">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2>Kişisel Bilgiler</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">İsim *</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="form-icon"><i class="fas fa-user"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="robloxName">Roblox İsim *</label>
+                            <input type="text" id="robloxName" name="robloxName" required>
+                            <div class="form-icon"><i class="fas fa-gamepad"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="discordName">Discord İsim *</label>
+                            <input type="text" id="discordName" name="discordName" required placeholder="örn: kullanici#1234">
+                            <div class="form-icon"><i class="fab fa-discord"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="robloxProfile">Roblox Profil Link *</label>
+                            <input type="url" id="robloxProfile" name="robloxProfile" required placeholder="https://www.roblox.com/users/...">
+                            <div class="form-icon"><i class="fas fa-link"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextSection(2)">
+                            Sonraki <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bölüm 2: Aktivite Bilgileri -->
+                <div class="form-section hidden" data-section="2">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2>Aktivite Bilgileri</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="activeHours">Kaç saat aktif kalabilirsiniz? *</label>
+                            <select id="activeHours" name="activeHours" required>
+                                <option value="">Seçiniz</option>
+                                <option value="1-2">1-2 saat</option>
+                                <option value="3-4">3-4 saat</option>
+                                <option value="5-6">5-6 saat</option>
+                                <option value="7-8">7-8 saat</option>
+                                <option value="8+">8+ saat</option>
+                            </select>
+                            <div class="form-icon"><i class="fas fa-clock"></i></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="timezone">Hangi saatlerde aktifsiniz? *</label>
+                            <input type="text" id="timezone" name="timezone" required placeholder="örn: 14:00 - 22:00">
+                            <div class="form-icon"><i class="fas fa-calendar-clock"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-btn" onclick="prevSection(1)">
+                            <i class="fas fa-arrow-left"></i> Önceki
+                        </button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextSection(3)">
+                            Sonraki <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bölüm 3: Deneyim ve Motivasyon -->
+                <div class="form-section hidden" data-section="3">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2>Deneyim ve Motivasyon</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="contribution">Bize ne katabilirsiniz? *</label>
+                            <textarea id="contribution" name="contribution" rows="5" required placeholder="Moderatör olarak ekibe nasıl katkı sağlayabileceğinizi açıklayın..."></textarea>
+                            <div class="form-icon"><i class="fas fa-lightbulb"></i></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="experience">Daha önce moderatörlük deneyiminiz var mı?</label>
+                            <textarea id="experience" name="experience" rows="4" placeholder="Varsa deneyimlerinizi paylaşın..."></textarea>
+                            <div class="form-icon"><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-btn" onclick="prevSection(2)">
+                            <i class="fas fa-arrow-left"></i> Önceki
+                        </button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextSection(4)">
+                            Sonraki <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bölüm 4: Son Kontrol ve Onay -->
+                <div class="form-section hidden" data-section="4">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2>Son Kontrol ve Onay</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="additionalInfo">Eklemek istediğiniz başka bilgi var mı?</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="İsteğe bağlı..."></textarea>
+                            <div class="form-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreeRules" name="agreeRules" required>
+                                <label for="agreeRules">
+                                    Tüm kuralları okudum ve kabul ediyorum *
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                <label for="agreeTerms">
+                                    Verdiğim bilgilerin doğru olduğunu beyan ederim *
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-btn" onclick="prevSection(3)">
+                            <i class="fas fa-arrow-left"></i> Önceki
+                        </button>
+                        <button type="submit" class="btn btn-success submit-btn">
+                            <i class="fas fa-paper-plane"></i> Gönder
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentStep">1</span> / 4 Bölüm
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Başvurunuz Gönderildi!</h3>
+            <p>Başvurunuz başarıyla alındı. En kısa sürede geri dönüş yapacağız.</p>
+            <button type="button" class="btn btn-primary" onclick="closeModal()">
+                Tamam
+            </button>
+        </div>
+    </div>
+
+    <script src="basvuru.js"></script>
+</body>
+</html>
+```
+
+```javascript
+function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+
+            // Check if we're in an iframe
+            if (window.parent !== window) {
+                setTimeout(() => {
+                    window.parent.closeIframe();
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }

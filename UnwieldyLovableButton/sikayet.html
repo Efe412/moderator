@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şikayet ve Rapor - Moderatör Ekibi</title>
+    <link rel="icon" href="attached_assets/912bb02f39aeab1b98616b53d58e5152-photoaidcom-cropped_1751403653605.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Moderatör Ekibi</span>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="application-page">
+        <div class="container">
+            <div class="application-header">
+                <div class="header-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h1>Şikayet ve Rapor</h1>
+                <p>Kural ihlali bildirin ve topluluk güvenliğine katkıda bulunun.</p>
+            </div>
+
+            <form class="application-form" id="complaintForm">
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2>Şikayet Bilgileri</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="reporterName">Adınız (İsteğe Bağlı)</label>
+                            <input type="text" id="reporterName" name="reporterName" placeholder="Anonim kalabilirsiniz">
+                            <div class="form-icon"><i class="fas fa-user"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reportType">Şikayet Türü *</label>
+                            <select id="reportType" name="reportType" required>
+                                <option value="">Seçiniz</option>
+                                <option value="harassment">Taciz/Zorbalık</option>
+                                <option value="spam">Spam/Flood</option>
+                                <option value="inappropriate">Uygunsuz İçerik</option>
+                                <option value="discrimination">Ayrımcılık</option>
+                                <option value="rule_violation">Kural İhlali</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                            <div class="form-icon"><i class="fas fa-flag"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reportedUser">Şikayet Edilen Kullanıcı</label>
+                            <input type="text" id="reportedUser" name="reportedUser" placeholder="Kullanıcı adı veya ID">
+                            <div class="form-icon"><i class="fas fa-user-times"></i></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="platform">Platform</label>
+                            <select id="platform" name="platform">
+                                <option value="">Seçiniz</option>
+                                <option value="discord">Discord</option>
+                                <option value="roblox">Roblox</option>
+                                <option value="website">Web Sitesi</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                            <div class="form-icon"><i class="fas fa-desktop"></i></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">Detaylı Açıklama *</label>
+                            <textarea id="description" name="description" rows="6" required placeholder="Olay hakkında detaylı bilgi verin..."></textarea>
+                            <div class="form-icon"><i class="fas fa-comment-alt"></i></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="evidenceFile">Kanıt Dosyası (Resim/Video)</label>
+                            <input type="file" id="evidenceFile" name="evidenceFile" accept="image/*,video/*" multiple>
+                            <div class="form-icon"><i class="fas fa-camera"></i></div>
+                            <small style="color: var(--gray-500); margin-top: 0.5rem; display: block;">
+                                Birden fazla dosya seçebilirsiniz (resim veya video)
+                            </small>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="urgentCase" name="urgentCase">
+                                <label for="urgentCase">Bu acil bir durumdur</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreePolicy" name="agreePolicy" required>
+                                <label for="agreePolicy">
+                                    Verdiğim bilgilerin doğru olduğunu ve yanlış rapor vermenin cezai sorumluluğu olduğunu kabul ediyorum *
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="submit" class="btn btn-warning submit-btn">
+                            <i class="fas fa-paper-plane"></i> Şikayeti Gönder
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Şikayet Gönderildi!</h3>
+            <p>Şikayetiniz alındı. En kısa sürede değerlendirilecek ve gerekli işlemler yapılacaktır.</p>
+            <button type="button" class="btn btn-primary" onclick="closeModal()">
+                Tamam
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            const files = [];
+            
+            for (let [key, value] of formData.entries()) {
+                if (key === 'evidenceFile') {
+                    // Handle file uploads
+                    if (value.size > 0) {
+                        files.push({
+                            name: value.name,
+                            size: value.size,
+                            type: value.type,
+                            lastModified: value.lastModified
+                        });
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            data.id = Date.now().toString();
+            data.submittedAt = new Date().toISOString();
+            data.submittedDate = new Date().toLocaleDateString('tr-TR');
+            data.submittedTime = new Date().toLocaleTimeString('tr-TR');
+            data.status = 'pending';
+            data.evidenceFiles = files;
+            
+            // Save complaint to complaints list
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            complaints.unshift(data);
+            localStorage.setItem('complaints', JSON.stringify(complaints));
+            
+            // Save to Şikayetler folder structure
+            updateComplaintsFolderStructure(data);
+            
+            // Create individual complaint file
+            const fileName = `sikayet_${data.reportedUser || 'anonim'}_${data.id}.txt`;
+            const fileContent = formatComplaintData(data);
+            localStorage.setItem(`sikayetler_${fileName}`, fileContent);
+            
+            // Show success modal
+            document.getElementById('successModal').classList.add('show');
+            
+            // Send log to logs dashboard
+            sendLogToSystem(data, 'complaint');
+        });
+
+        function updateComplaintsFolderStructure(data) {
+            // Get existing folder structure
+            const folderStructure = JSON.parse(localStorage.getItem('main_folder_structure') || '{}');
+            
+            if (!folderStructure.sikayetler) {
+                folderStructure.sikayetler = {
+                    type: 'folder',
+                    files: [],
+                    created: new Date().toISOString(),
+                    name: 'Şikayetler'
+                };
+            }
+            
+            // Add new complaint file to folder
+            folderStructure.sikayetler.files.push({
+                name: `${data.reportedUser || 'anonim'}_${data.id}.txt`,
+                type: 'file',
+                size: formatComplaintData(data).length,
+                created: data.submittedAt,
+                complaintId: data.id,
+                reportType: data.reportType,
+                urgent: data.urgentCase || false
+            });
+            
+            localStorage.setItem('main_folder_structure', JSON.stringify(folderStructure));
+            
+            // Create individual complaint folder
+            const individualComplaint = {
+                reportInfo: {
+                    reporterName: data.reporterName || 'Anonim',
+                    reportType: data.reportType,
+                    reportedUser: data.reportedUser || 'Belirtilmedi',
+                    platform: data.platform || 'Belirtilmedi'
+                },
+                details: {
+                    description: data.description,
+                    evidence: data.evidence || 'Yok',
+                    urgentCase: data.urgentCase || false
+                },
+                metadata: {
+                    id: data.id,
+                    submittedAt: data.submittedAt,
+                    submittedDate: data.submittedDate,
+                    submittedTime: data.submittedTime,
+                    status: 'pending'
+                }
+            };
+            
+            localStorage.setItem(`sikayet_detay_${data.id}`, JSON.stringify(individualComplaint));
+        }
+
+        function formatComplaintData(data) {
+            let evidenceInfo = 'Yok';
+            if (data.evidenceFiles && data.evidenceFiles.length > 0) {
+                evidenceInfo = data.evidenceFiles.map(file => 
+                    `${file.name} (${(file.size / 1024).toFixed(1)} KB, ${file.type})`
+                ).join(', ');
+            }
+            
+            return `=== ŞİKAYET VE RAPOR FORMU ===
+
+Şikayet ID: ${data.id}
+Şikayet Tarihi: ${data.submittedDate} ${data.submittedTime}
+
+=== RAPOR BİLGİLERİ ===
+Rapor Eden: ${data.reporterName || 'Anonim'}
+Şikayet Türü: ${data.reportType}
+Şikayet Edilen Kullanıcı: ${data.reportedUser || 'Belirtilmedi'}
+Platform: ${data.platform || 'Belirtilmedi'}
+
+=== DETAYLAR ===
+Açıklama: ${data.description}
+Kanıt Dosyaları: ${evidenceInfo}
+Acil Durum: ${data.urgentCase ? 'Evet' : 'Hayır'}
+
+=== DURUM ===
+Şikayet Durumu: Beklemede
+`;
+        }
+
+        function sendLogToSystem(data, type) {
+            // Create log entry for logs dashboard
+            const logEntry = {
+                id: data.id,
+                type: type,
+                timestamp: new Date().toISOString(),
+                data: data,
+                status: data.urgentCase ? 'urgent' : 'new'
+            };
+            
+            // Store in separate logs array for real-time monitoring
+            const systemLogs = JSON.parse(localStorage.getItem('system_logs') || '[]');
+            systemLogs.unshift(logEntry);
+            localStorage.setItem('system_logs', JSON.stringify(systemLogs));
+            
+            // Also trigger a custom event for real-time updates
+            window.dispatchEvent(new CustomEvent('newLogEntry', { detail: logEntry }));
+            
+            console.log('📡 Şikayet log sisteme gönderildi:', logEntry);
+        }
+        
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+            // Check if we're in an iframe
+            if (window.parent !== window) {
+                window.parent.closeIframe();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

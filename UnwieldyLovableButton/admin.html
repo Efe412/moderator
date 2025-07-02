@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Moderatör Başvuruları</title>
+    <link rel="icon" href="attached_assets/912bb02f39aeab1b98616b53d58e5152-photoaidcom-cropped_1751403653605.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .admin-panel {
+            min-height: 100vh;
+            background: var(--gray-50);
+            padding: var(--space-8);
+        }
+        .admin-header {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-8);
+            text-align: center;
+        }
+        .applications-grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        .application-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary-color);
+        }
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+        .status-badge {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-pending {
+            background: rgba(237, 137, 54, 0.1);
+            color: var(--warning-color);
+        }
+        .application-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+        .detail-item {
+            background: var(--gray-50);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+        }
+        .detail-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-value {
+            font-weight: 500;
+            color: var(--gray-900);
+            margin-top: var(--space-1);
+        }
+        .no-applications {
+            text-align: center;
+            padding: var(--space-12);
+            color: var(--gray-500);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <div class="admin-header">
+            <h1><i class="fas fa-shield-alt"></i> Moderatör Başvuruları</h1>
+            <p>Gelen başvuruları görüntüleyin ve yönetin</p>
+            <div style="margin-top: 1rem;">
+                <button onclick="refreshApplications()" class="btn btn-primary">
+                    <i class="fas fa-refresh"></i> Yenile
+                </button>
+                <button onclick="clearAllApplications()" class="btn btn-warning">
+                    <i class="fas fa-trash"></i> Tümünü Temizle
+                </button>
+                <button onclick="viewFolderStructure()" class="btn btn-info">
+                    <i class="fas fa-folder"></i> Dosya Yapısı
+                </button>
+                <button onclick="viewComplaints()" class="btn btn-warning">
+                    <i class="fas fa-flag"></i> Şikayetler
+                </button>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i> Ana Sayfa
+                </a>
+            </div>
+        </div>
+
+        <div class="applications-grid" id="applicationsContainer">
+            <div class="no-applications">
+                <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                <p>Henüz başvuru bulunmuyor.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadApplications() {
+            const applications = JSON.parse(localStorage.getItem('moderator_applications') || '[]');
+            const container = document.getElementById('applicationsContainer');
+            
+            if (applications.length === 0) {
+                container.innerHTML = `
+                    <div class="no-applications">
+                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <p>Henüz başvuru bulunmuyor.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = applications.map(app => `
+                <div class="application-card">
+                    <div class="application-header">
+                        <h3>${app.name}</h3>
+                        <div class="status-badge status-pending">Beklemede</div>
+                    </div>
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">İsim</div>
+                            <div class="detail-value">${app.name}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Roblox İsim</div>
+                            <div class="detail-value">${app.robloxName}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Discord İsim</div>
+                            <div class="detail-value">${app.discordName}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Aktiflik</div>
+                            <div class="detail-value">${app.activeHours}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Başvuru Tarihi</div>
+                            <div class="detail-value">${app.submittedDate} ${app.submittedTime}</div>
+                        </div>
+                        <div class="detail-item" style="grid-column: 1 / -1;">
+                            <div class="detail-label">Katkı</div>
+                            <div class="detail-value">${app.contribution}</div>
+                        </div>
+                        ${app.experience ? `
+                        <div class="detail-item" style="grid-column: 1 / -1;">
+                            <div class="detail-label">Deneyim</div>
+                            <div class="detail-value">${app.experience}</div>
+                        </div>
+                        ` : ''}
+                        ${app.additionalInfo ? `
+                        <div class="detail-item" style="grid-column: 1 / -1;">
+                            <div class="detail-label">Ek Bilgiler</div>
+                            <div class="detail-value">${app.additionalInfo}</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function refreshApplications() {
+            loadApplications();
+        }
+        
+        function clearAllApplications() {
+            if (confirm('Tüm başvuruları silmek istediğinizden emin misiniz?')) {
+                localStorage.removeItem('moderator_applications');
+                localStorage.removeItem('application_logs');
+                
+                // Clear individual files and folder structure
+                const keys = Object.keys(localStorage);
+                keys.forEach(key => {
+                    if (key.startsWith('kayitlar_')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+                
+                loadApplications();
+                alert('Tüm başvurular ve kayıt dosyaları silindi.');
+            }
+        }
+        
+        function viewFolderStructure() {
+            const folderStructure = JSON.parse(localStorage.getItem('main_folder_structure') || '{}');
+            
+            let folderContent = `📁 Ana Klasör Yapısı\n\n`;
+            
+            // Başvurular Klasörü
+            if (folderStructure.basvurular && folderStructure.basvurular.files.length > 0) {
+                folderContent += `📁 Başvurular Klasörü\n`;
+                folderContent += `Toplam Dosya: ${folderStructure.basvurular.files.length}\n\n`;
+                
+                folderStructure.basvurular.files.forEach((file, index) => {
+                    folderContent += `${index + 1}. 📄 ${file.name}\n`;
+                    folderContent += `   Başvuran: ${file.applicantName}\n`;
+                    folderContent += `   Boyut: ${file.size} karakter\n`;
+                    folderContent += `   Tarih: ${new Date(file.created).toLocaleString('tr-TR')}\n\n`;
+                });
+            } else {
+                folderContent += `📁 Başvurular Klasörü - Boş\n\n`;
+            }
+            
+            // Şikayetler Klasörü
+            if (folderStructure.sikayetler && folderStructure.sikayetler.files.length > 0) {
+                folderContent += `📁 Şikayetler Klasörü\n`;
+                folderContent += `Toplam Dosya: ${folderStructure.sikayetler.files.length}\n\n`;
+                
+                folderStructure.sikayetler.files.forEach((file, index) => {
+                    folderContent += `${index + 1}. 📄 ${file.name}\n`;
+                    folderContent += `   Tür: ${file.reportType || 'Belirtilmedi'}\n`;
+                    folderContent += `   Acil: ${file.urgent ? 'Evet' : 'Hayır'}\n`;
+                    folderContent += `   Boyut: ${file.size} karakter\n`;
+                    folderContent += `   Tarih: ${new Date(file.created).toLocaleString('tr-TR')}\n\n`;
+                });
+            } else {
+                folderContent += `📁 Şikayetler Klasörü - Boş\n\n`;
+            }
+            
+            if (!folderStructure.basvurular && !folderStructure.sikayetler) {
+                folderContent += `Henüz hiç klasör oluşturulmamış.`;
+            }
+            
+            // Create modal to show folder structure
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 1rem; max-width: 700px; max-height: 80vh; overflow-y: auto;">
+                    <h3 style="margin: 0 0 1rem 0;">📁 Dosya Yapısı</h3>
+                    <pre style="white-space: pre-wrap; font-size: 0.9rem; background: #f5f5f5; padding: 1rem; border-radius: 0.5rem;">${folderContent}</pre>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                        <button onclick="viewComplaints()" style="padding: 0.5rem 1rem; background: #f56565; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Şikayetleri Görüntüle</button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Kapat</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        function viewComplaints() {
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            
+            if (complaints.length === 0) {
+                alert('Henüz şikayet bulunmuyor.');
+                return;
+            }
+            
+            let complaintsContent = `📋 Şikayetler Listesi\n\n`;
+            
+            complaints.forEach((complaint, index) => {
+                complaintsContent += `${index + 1}. ${complaint.reportType || 'Bilinmeyen'}\n`;
+                complaintsContent += `   Rapor Eden: ${complaint.reporterName || 'Anonim'}\n`;
+                complaintsContent += `   Şikayet Edilen: ${complaint.reportedUser || 'Belirtilmedi'}\n`;
+                complaintsContent += `   Platform: ${complaint.platform || 'Belirtilmedi'}\n`;
+                complaintsContent += `   Tarih: ${complaint.submittedDate} ${complaint.submittedTime}\n`;
+                complaintsContent += `   Durum: ${complaint.status}\n`;
+                complaintsContent += `   Acil: ${complaint.urgentCase ? 'Evet' : 'Hayır'}\n\n`;
+            });
+            
+            // Create modal to show complaints
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10001;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 1rem; max-width: 700px; max-height: 80vh; overflow-y: auto;">
+                    <h3 style="margin: 0 0 1rem 0;">📋 Şikayetler</h3>
+                    <pre style="white-space: pre-wrap; font-size: 0.9rem; background: #fef5e7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f56565;">${complaintsContent}</pre>
+                    <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Kapat</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        // Sayfa yüklendiğinde başvuruları yükle
+        document.addEventListener('DOMContentLoaded', loadApplications);
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli - Moderatör Ekibi</title>
+    <link rel="icon" href="attached_assets/912bb02f39aeab1b98616b53d58e5152-photoaidcom-cropped_1751403653605.png" type="image/x-icon">
+    <link rel="stylesheet" href="admin-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: var(--gray-50);
+            font-family: 'Poppins', sans-serif;
+        }
+        .dashboard {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .dashboard-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .dashboard-nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .nav-btn.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .content-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .data-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .data-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .data-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .data-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-200);
+        }
+        .data-label {
+            font-weight: 600;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .data-value {
+            color: var(--gray-900);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-pending {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+        .delete-btn {
+            background: #f56565;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .delete-btn:hover {
+            background: #e53e3e;
+            transform: scale(1.05);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        .evidence-files {
+            margin-top: 0.5rem;
+        }
+        .file-item {
+            background: var(--gray-100);
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-500);
+        }
+        .search-box {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-shield-alt"></i> Yönetici Paneli</h1>
+            <p>Moderatör başvuruları ve şikayetleri yönetin</p>
+            <div class="dashboard-nav">
+                <button class="nav-btn active" onclick="showSection('applications')">
+                    <i class="fas fa-user-plus"></i> Başvurular
+                </button>
+                <button class="nav-btn" onclick="showSection('complaints')">
+                    <i class="fas fa-flag"></i> Şikayetler
+                </button>
+                <button class="nav-btn" onclick="showSection('stats')">
+                    <i class="fas fa-chart-bar"></i> İstatistikler
+                </button>
+                <a href="index.html" class="nav-btn">
+                    <i class="fas fa-home"></i> Ana Sayfa
+                </a>
+            </div>
+        </div>
+
+        <!-- Applications Section -->
+        <div id="applications" class="content-section active">
+            <h2><i class="fas fa-user-plus"></i> Moderatör Başvuruları</h2>
+            <input type="text" class="search-box" id="applicationsSearch" placeholder="Başvuruları ara...">
+            <div id="applicationsContainer">
+                <div class="no-data">
+                    <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                    <p>Henüz başvuru bulunmuyor.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaints Section -->
+        <div id="complaints" class="content-section">
+            <h2><i class="fas fa-flag"></i> Şikayetler</h2>
+            <input type="text" class="search-box" id="complaintsSearch" placeholder="Şikayetleri ara...">
+            <div id="complaintsContainer">
+                <div class="no-data">
+                    <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                    <p>Henüz şikayet bulunmuyor.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div id="stats" class="content-section">
+            <h2><i class="fas fa-chart-bar"></i> İstatistikler</h2>
+            <div class="stats-grid" id="statsContainer">
+                <!-- Stats will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

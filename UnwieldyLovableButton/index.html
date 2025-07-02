@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderatör Ekibi - Kurallar ve Alım Kriterleri</title>
+    <link rel="icon" href="attached_assets/912bb02f39aeab1b98616b53d58e5152-photoaidcom-cropped_1751403653605.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">🛡️</div>
+            <div class="loading-text">Moderatör Ekibi</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Moderatör Ekibi</span>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#rules" class="nav-link">Kurallar</a></li>
+                <li><a href="#requirements" class="nav-link">Alım Kriterleri</a></li>
+
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="scroll-progress"></div>
+
+    <header id="home" class="hero">
+        <div class="hero-particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">Resmi</span>
+            </div>
+            <h1 class="hero-title">Moderatör Ekibi</h1>
+            <p class="hero-description">Moderatör Ekibi Olarak Hizmetindeyiz</p>
+            <div class="hero-buttons">
+                <a href="admin-dashboard.html" class="btn btn-primary">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Yönetici Paneli</span>
+                    </a>
+                    <a href="logs.html" class="btn btn-secondary" style="margin-left: 1rem;">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Logs Dashboard</span>
+                    </a>
+                <button onclick="openIframe('basvuru.html')" class="btn btn-secondary">
+                    <span>Başvuru Yap</span>
+                    <i class="fas fa-user-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="rules" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Kurallar</span>
+                    <h2 class="section-title">Genel Kurallar</h2>
+                    <p class="section-description">Tüm üyelerin uyması gereken temel kurallar ve davranış kodları</p>
+                </div>
+
+                <div class="rules-grid">
+                    <div class="rule-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="rule-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Saygı ve Nezaket</h3>
+                        <ul class="rule-list">
+                            <li>Tüm üyelere saygılı davranın</li>
+                            <li>Kişisel saldırılar yasaktır</li>
+                            <li>Yapıcı eleştiri yapmaya özen gösterin</li>
+                            <li>Farklı görüşlere hoşgörü gösterin</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="rule-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h3>Ayrımcılık Yasağı</h3>
+                        <ul class="rule-list">
+                            <li>Dil, din, ırk ayrımı yapılmayacak</li>
+                            <li>Cinsiyet ve yaş ayrımı yasaktır</li>
+                            <li>Herkes eşit şekilde karşılanır</li>
+                            <li>Nefret söylemi kesinlikle yasaktır</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="rule-icon">
+                            <i class="fas fa-volume-mute"></i>
+                        </div>
+                        <h3>Spam ve Flood</h3>
+                        <ul class="rule-list">
+                            <li>Tekrarlı mesajlar göndermeyin</li>
+                            <li>Gereksiz etiketleme yasaktır</li>
+                            <li>Reklam ve spam içerik paylaşmayın</li>
+                            <li>Büyük harf kilidi kullanmayın</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="rule-icon">
+                            <i class="fas fa-eye-slash"></i>
+                        </div>
+                        <h3>Uygunsuz İçerik</h3>
+                        <ul class="rule-list">
+                            <li>NSFW içerik kesinlikle yasaktır</li>
+                            <li>Şiddet içerikli paylaşımlar yapılmaz</li>
+                            <li>Yasal olmayan aktiviteler tartışılmaz</li>
+                            <li>Korku verici içerik paylaşmayın</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="rule-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3>Gizlilik ve Güvenlik</h3>
+                        <ul class="rule-list">
+                            <li>Kişisel bilgilerinizi paylaşmayın</li>
+                            <li>Başkalarının bilgilerini ifşa etmeyin</li>
+                            <li>Doxxing kesinlikle yasaktır</li>
+                            <li>Sahte kimlik kullanmayın</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="rules-notice">
+                    <div class="notice-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h4>Önemli Uyarı</h4>
+                        <p>Bu kuralların ihlali durumunda uyarı, geçici yasak veya kalıcı yasak cezaları uygulanabilir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="requirements" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Başvuru</span>
+                    <h2 class="section-title">Moderatör Alım Kriterleri</h2>
+                    <p class="section-description">Moderatör ekibine katılmak için gereken şartlar ve beklentiler</p>
+                </div>
+
+                <div class="requirements-timeline">
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                        <div class="timeline-marker">
+                            <div class="marker-number">1</div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Disiplin ve Sorumluluk</h3>
+                            <p>Kurallara uyma konusunda örnek olmalısınız</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Düzenli ve tutarlı davranış</li>
+                                <li><i class="fas fa-check"></i> Görevlerini aksatmama</li>
+                                <li><i class="fas fa-check"></i> Objektif yaklaşım sergileme</li>
+                                <li><i class="fas fa-check"></i> Stres altında sakin kalabilme</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                        <div class="timeline-marker">
+                            <div class="marker-number">3</div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Aktiflik Seviyesi</h3>
+                            <p>Düzenli ve aktif olarak bulunmalısınız</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Günde en az 2-3 saat online</li>
+                                <li><i class="fas fa-check"></i> Haftalık 5 gün aktiflik</li>
+                                <li><i class="fas fa-check"></i> Acil durumlarda ulaşılabilir</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="timeline-marker">
+                            <div class="marker-number">4</div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>İletişim Becerileri</h3>
+                            <p>Etkili iletişim kurabilmelisiniz</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Sakin ve diplomatik yaklaşım</li>
+                                <li><i class="fas fa-check"></i> Çatışma çözme becerisi</li>
+                                <li><i class="fas fa-check"></i> Empati kurabilme</li>
+                                <li><i class="fas fa-check"></i> Açık ve net iletişim</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="500">
+                        <div class="timeline-marker">
+                            <div class="marker-number">5</div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Teknik Bilgi</h3>
+                            <p>Platform özelliklerini bilmelisiniz</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Discord/Platform komutları</li>
+                                <li><i class="fas fa-check"></i> Moderasyon araçları</li>
+                                <li><i class="fas fa-check"></i> Bot sistemleri kullanımı</li>
+                                <li><i class="fas fa-check"></i> Hızlı problem çözme</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                        <div class="timeline-marker">
+                            <div class="marker-number">6</div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Temiz Geçmiş</h3>
+                            <p>Ceza geçmişiniz temiz olmalıdır</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Son 6 ayda uyarı almamalı</li>
+                                <li><i class="fas fa-check"></i> Hiç ban yememeli</li>
+                                <li><i class="fas fa-check"></i> Güvenilir üye olarak tanınmalı</li>
+                                <li><i class="fas fa-check"></i> Pozitif topluluk katkısı</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="application-cta">
+                    <div class="cta-content">
+                        <h3>Başvuru Yapmaya Hazır Mısınız?</h3>
+                        <p>Tüm kriterleri karşılıyorsanız, moderatör ekibimizin bir parçası olun!</p>
+                        <button onclick="openIframe('basvuru.html')" class="btn btn-primary btn-large">
+                            <span>Hemen Başvur</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Sahibi</span>
+                    <h2 class="section-title">Yönetim Kadrosu</h2>
+                    <p class="section-description">MatWum Ekibi yönetici kadrosu ve iletişim seçenekleri</p>
+                </div>
+
+                <div class="management-team">
+                    <div class="team-horizontal">
+                        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                            <div class="member-avatar">
+                                <img src="https://cdn.discordapp.com/avatars/855724576176209930/e49dcf9e74162872bf2f4523433b6319.webp?size=1024" alt="Mater">
+                                <div class="avatar-glow"></div>
+                            </div>
+                            <div class="member-info">
+                                <h3>Mater</h3>
+                                <p class="member-role">Founder (Kurucu)</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                            <div class="member-avatar">
+                                <img src="https://cdn.discordapp.com/avatars/1163877190186840074/d27dc21c554552d65f4c4d0e7d9dd7c4.webp?size=1024" alt="Wumpus">
+                                <div class="avatar-glow"></div>
+                            </div>
+                            <div class="member-info">
+                                <h3>Wumpus</h3>
+                                <p class="member-role">Owner (Yönetici)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="application" class="application-section">
+                    <div class="section-header">
+                        <span class="section-badge">Başvuru</span>
+                        <h2 class="section-title">Moderatör Başvurusu</h2>
+                        <p class="section-description">Moderatör Ekibi'ne katılmak için başvurun</p>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Moderatör Başvurusu</h3>
+                        <p>Moderatör olmak için başvurun ve ekibimizin bir parçası olun</p>
+                        <ul class="contact-features">
+                            <li><i class="fas fa-check"></i> Hızlı değerlendirme</li>
+                            <li><i class="fas fa-check"></i> Detaylı geri bildirim</li>
+                            <li><i class="fas fa-check"></i> Eğitim desteği</li>
+                        </ul>
+                        <button onclick="openIframe('basvuru.html')" class="contact-btn btn-primary">
+                            <span>Başvuru Formu</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+
+
+
+
+                    <div class="contact-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="contact-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Şikayet ve Rapor</h3>
+                        <p>Kural ihlali bildirin ve topluluk güvenliğine katkıda bulunun</p>
+                        <ul class="contact-features">
+                            <li><i class="fas fa-check"></i> Gizli rapor</li>
+                            <li><i class="fas fa-check"></i> Hızlı işlem</li>
+                            <li><i class="fas fa-check"></i> Güvenli sistem</li>
+                        </ul>
+                        <button onclick="openIframe('sikayet.html')" class="contact-btn btn-warning">
+                            <span>Şikayet Et</span>
+                            <i class="fas fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h4>Diğer İletişim Yolları</h4>
+                        <div class="contact-methods">
+                            <div class="method">
+                                <i class="fas fa-envelope"></i>
+                                <span>moderator@example.com</span>
+                            </div>
+                            <div class="method">
+                                <i class="fab fa-discord"></i>
+                                <span>Wumpus / Mater</span>
+                            </div>
+                            <div class="method">
+                                <i class="fas fa-clock"></i>
+                                <span>Yanıt süresi: Aktif olduğumuzda</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Moderatör Ekibi</span>
+                    </div>
+                    <p>Güvenli ve düzenli bir topluluk için çalışıyoruz. Birlikte daha iyi bir ortam yaratalım.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/W25WePrrct"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Erişim</h4>
+                    <ul>
+                        <li><a href="#rules">Kurallar</a></li>
+                        <li><a href="#requirements">Alım Kriterleri</a></li>
+                        <li><a href="#team">Ekip</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Moderatör Araçları</h4>
+                    <ul>
+                        <li><a href="#">Yönetim Paneli</a></li>
+                        <li><a href="#">Raporlar</a></li>
+                        <li><a href="#">İstatistikler</a></li>
+                        <li><a href="#">Eğitim Materyalleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Topluluk</h4>
+                    <ul>
+                        <li><a href="#">Etkinlik Takvimi</a></li>
+                        <li><a href="#">Duyurular</a></li>
+                        <li><a href="#">Sık Sorulan Sorular</a></li>
+                        <li><a href="#">Geri Bildirim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Moderatör Ekibi. Tüm hakları saklıdır.</p>
+                    <div class="footer-links">
+                        <a href="#">Gizlilik Politikası</a>
+                        <a href="#">Kullanım Şartları</a>
+                        <a href="#">Çerez Politikası</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Iframe Container -->
+    <div class="iframe-overlay" id="iframeOverlay">
+        <div class="iframe-container">
+            <div class="iframe-header">
+                <h3 id="iframeTitle">Form</h3>
+                <button class="iframe-close" onclick="closeIframe()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <iframe id="formIframe" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openIframe(src) {
+            const overlay = document.getElementById('iframeOverlay');
+            const iframe = document.getElementById('formIframe');
+            const title = document.getElementById('iframeTitle');
+
+            // Set title based on source
+            if (src.includes('basvuru')) {
+                title.textContent = 'Moderatör Başvurusu';
+            } else if (src.includes('sikayet')) {
+                title.textContent = 'Şikayet ve Rapor';
+            } else if (src.includes('ai-chat')) {
+                title.textContent = 'AI Asistan';
+            }
+
+            iframe.src = src;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeIframe() {
+            const overlay = document.getElementById('iframeOverlay');
+            const iframe = document.getElementById('formIframe');
+
+            overlay.classList.remove('active');
+            iframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        // Close iframe when clicking outside
+        document.getElementById('iframeOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeIframe();
+            }
+        });
+
+        // Close iframe with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeIframe();
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
