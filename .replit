@@ -10,4 +10,4 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd UnwieldyLovableButton && python -m http.server 8080 --bind 0.0.0.0"
+args = "cd UnwieldyLovableButton && python3 -m http.server 8080 --bind 0.0.0.0"
