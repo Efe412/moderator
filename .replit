@@ -1,1 +1,13 @@
 entrypoint = "UnwieldyLovableButton/index.html"
+
+[workflows]
+runButton = "Serve HTML"
+
+[[workflows.workflow]]
+name = "Serve HTML"
+author = 44521860
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "static-web-server -w ./.config/static-web-server.toml"
