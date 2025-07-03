@@ -54,9 +54,10 @@
             <h1 class="hero-title">Moderatör Ekibi</h1>
             <p class="hero-description">Moderatör Ekibi Olarak Hizmetindeyiz</p>
             <div class="hero-buttons">
-                    <a href="basvuru.html" class="btn btn-primary btn-large">
-                        <i class="fas fa-user-plus"></i> Moderatör Ol
-                    </a>
+                    <button onclick="becomeModerator()" class="btn btn-primary btn-large" disabled style="opacity: 0.6; cursor: not-allowed;">
+                        <span>Moderatör Ol</span>
+                        <i class="fas fa-lock"></i>
+                    </button>
                     <a href="sikayet.html" class="btn btn-secondary btn-large">
                         <i class="fas fa-flag"></i> Şikayet Et
                     </a>
@@ -245,17 +246,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="application-cta">
-                    <div class="cta-content">
-                        <h3>Başvuru Yapmaya Hazır Mısınız?</h3>
-                        <p>Tüm kriterleri karşılıyorsanız, moderatör ekibimizin bir parçası olun!</p>
-                        <button onclick="openIframe('basvuru.html')" class="btn btn-primary btn-large">
-                            <span>Hemen Başvur</span>
-                            <i class="fas fa-rocket"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -313,10 +303,10 @@
                             <li><i class="fas fa-check"></i> Detaylı geri bildirim</li>
                             <li><i class="fas fa-check"></i> Eğitim desteği</li>
                         </ul>
-                        <button onclick="openIframe('basvuru.html')" class="contact-btn btn-primary">
-                            <span>Başvuru Formu</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </button>
+                        <button onclick="showApplicationClosedModal()" class="btn btn-primary btn-large" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                <i class="fas fa-lock"></i>
+                                <span>Başvuru Formu</span>
+                            </button>
                     </div>
 
 
@@ -480,6 +470,14 @@
                 closeIframe();
             }
         });
+
+        function becomeModerator() {
+            alert('Moderatör başvuruları şu anda kapalıdır.');
+        }
+
+        function showApplicationClosedModal() {
+            alert('Moderatör başvuruları şu anda kapalıdır.');
+        }
     </script>
 
     <script src="script.js"></script>
