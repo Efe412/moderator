@@ -558,36 +558,9 @@ class ModeratorSite {
 }
 
 function openIframe(url) {
-    // Check if applications are closed
-    const applicationsOpen = false; // Set to true to open applications
-
-    if (!applicationsOpen) {
-        showApplicationClosedModal();
-        return;
-    }
-
-    const overlay = document.createElement('div');
-    overlay.className = 'iframe-overlay';
-    overlay.innerHTML = `
-        <div class="iframe-container">
-            <div class="iframe-header">
-                <h3>Moderatör Başvurusu</h3>
-                <button class="close-btn" onclick="closeIframe()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <iframe src="${url}" frameborder="0"></iframe>
-        </div>
-    `;
-    document.body.appendChild(overlay);
-
-    // Animate in
-    setTimeout(() => {
-        overlay.classList.add('active');
-    }, 10);
-
-    // Prevent body scroll
-    document.body.style.overflow = 'hidden';
+    // Applications are always closed - show modal immediately
+    showApplicationClosedModal();
+    return;
 }
 
 function showApplicationClosedModal() {
@@ -698,6 +671,16 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Function for "Moderatör Ol" button
+function becomeModerator() {
+    showApplicationClosedModal();
+}
+
+// Function to handle any application attempt
+function applyForModerator() {
+    showApplicationClosedModal();
+}
 
 // Initialize the application
 const moderatorSite = new ModeratorSite();
