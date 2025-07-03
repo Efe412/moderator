@@ -1,8 +1,7 @@
-
 [general]
 host = "0.0.0.0"
 port = 80
-root = "./UnwieldyLovableButton"
+root = "./"
 
 log-level = "error"
 log-remote-address = false
